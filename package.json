@@ -1,0 +1,11 @@
+{
+  "name": "express-app",
+  "version": "1.0.0",
+  "description": "Node JS express app",
+  "main": "index.js",
+  "author": "inaseem",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}

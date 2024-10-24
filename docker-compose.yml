@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: 'postgres:14.7'
+    container_name: express-app-db
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: root
+      POSTGRES_DB: express-app
+    ports:
+      - '3031:5432'
+    volumes:
+      - express-app-data:/var/lib/postgresql/data
+  express-app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: express-app
+    ports:
+      - '3030:3030'
+    restart: always
+    volumes:
+      - .:/app
+
+volumes:
+  express-app-data:

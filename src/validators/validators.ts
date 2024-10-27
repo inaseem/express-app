@@ -6,4 +6,8 @@ const registerUserValidator = [
   check('password', 'Password is required').not().isEmpty(),
 ];
 
-export { registerUserValidator };
+const createPermissionValidator = [
+  check('name', 'Name is required').not().isEmpty(),
+];
+
+export { registerUserValidator, createPermissionValidator };

@@ -1,29 +1,23 @@
-import express, { Express, Request, Response } from 'express';
-import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
+import express, { Express, Request, Response } from 'express';
+import mongoose from 'mongoose';
+import authRoutesV1 from './routes/authRoute';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3030;
-const database = process.env.POSTGRES_DB!;
-const db_user = process.env.POSTGRES_USER!;
-const db_password = process.env.POSTGRES_PASSWORD!;
 
-const sequelize = new Sequelize(database, db_user, db_password, {
-  host: 'postgres',
-  dialect: 'postgres',
-});
+app.use(express.json()); // for parsing body in JSON format
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
-(async () => {
-  await sequelize.authenticate();
+app.use(express.static('../public')); // making the public directory static
+
+// Auth routes
+app.use('/api/v1', authRoutesV1);
+
+(async function () {
+  await mongoose.connect('mongodb://127.0.0.1:27017/express-app');
   app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
   });
-})().catch((err) => {
-  console.error('Unable to connect to the database:', err);
-  sequelize.close();
-});
+})();

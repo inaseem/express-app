@@ -1,9 +1,9 @@
-docker-compose down 
+DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose down 
 if [ "$1" = "--build" ]
 then 
-    docker-compose up -d --build
+    DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose up -d --build
 else 
-    docker-compose up -d
+    DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose up
 fi
 
 sh ssh-to-app.sh 

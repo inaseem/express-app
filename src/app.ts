@@ -2,8 +2,10 @@ import dotenv from 'dotenv';
 import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import authRoutesV1 from './routes/authRoute';
+import Config from './config';
 
 dotenv.config();
+Config.initialize();
 
 const app: Express = express();
 const port = process.env.PORT || 3030;

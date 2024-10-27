@@ -1,6 +1,6 @@
 services:
   mongo_db:
-    image: 'arm64v8/mongo:8.0-noble'
+    image: 'amd64/mongo:8.0-noble'
     container_name: express-app-db
     ports:
       - '3031:27017'

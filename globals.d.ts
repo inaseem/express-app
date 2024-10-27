@@ -4,3 +4,15 @@ namespace NodeJS {
     JWT_SECRET: string;
   }
 }
+
+declare namespace Express {
+  export interface Request {
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      password: string;
+      role: string;
+    };
+  }
+}

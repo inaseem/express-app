@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import authRoutesV1 from './routes/authRoute';
 
@@ -16,7 +16,7 @@ app.use(express.static('../public')); // making the public directory static
 app.use('/api/v1', authRoutesV1);
 
 (async function () {
-  await mongoose.connect('mongodb://127.0.0.1:27017/express-app');
+  await mongoose.connect(process.env.MONGO_DB_URI);
   app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
   });
